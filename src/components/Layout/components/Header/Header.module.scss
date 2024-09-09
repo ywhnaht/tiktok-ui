@@ -1,4 +1,8 @@
 .wrapper {
+    --search-height: 46px;
+    --search-top-spacer: 9px;
+    --search-button-width: 52px;
+
     height: var(--default-layout-header-height);
     box-shadow: 0 1px 1px rgba(0 0 0 / 0.12);
 }
@@ -7,9 +11,82 @@
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     max-width: 100%;
     padding-right: 24px;
     padding-left: 16px;
+}
+
+.tiktok-logo img {
+    width: 130px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.search {
+    background: rgba(22, 24, 35, 0.06);
+    position: relative;
+    width: 500px;
+    height: var(--search-height);
+    padding-left: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1.5px solid transparent;
+    border-radius: 20px;
+
+    input {
+        flex: 1;
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 21px;
+        padding: 12px 0;
+        caret-color: var(--primary);
+        background: transparent;
+    }
+
+    input:not(:placeholder-shown) ~ .search-btn {
+        color: rgba(22, 24, 35, 0.75);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: var(--search-top-spacer);
+        right: var(--search-button-width);
+        width: 1px;
+        height: calc(var(--search-height) - var(--search-top-spacer) * 2);
+        background: rgba(22, 24, 35, 0.12);
+    }
+
+    &:focus-within {
+        border-color: rgba(22, 24, 35, 0.2);
+    }
+}
+
+.clear,
+.loading {
+    position: absolute;
+    right: calc(var(--search-button-width) + 16px);
+    color: rgba(22, 24, 35, 0.34);
+}
+
+.search-btn {
+    width: 52px;
+    height: 100%;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-size: 2rem;
+    color: rgba(22, 24, 35, 0.34);
+
+    &:hover {
+        cursor: pointer;
+        background: rgba(22, 24, 35, 0.03);
+    }
+
+    &:active {
+        background: rgba(22, 24, 35, 0.06);
+    }
 }
